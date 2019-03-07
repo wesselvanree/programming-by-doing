@@ -27,6 +27,7 @@ public class MoreVariablesAndPrinting
         "If I add " + Age + ", " + Height + ", and " + Weight + " I get " + (Age + Height + Weight) + ".");
   }
 
+  // method zet een int van lbs om naar kg
   static int ToKg(int x) {
     double Kg = x * 0.45359237;
     Kg = Math.round(Kg);
@@ -34,6 +35,7 @@ public class MoreVariablesAndPrinting
     return KgInt;
   }
 
+  // method zet int van inches om naar cm
   static int ToCm(int x) {
     double Cm = x * 2.54;
     Cm = Math.round(Cm);

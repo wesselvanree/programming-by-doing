@@ -1,7 +1,7 @@
 public class Schedule {
   public static void main(String[] args)
   {
-    // c for course, t for teacher
+    // c voor course, t voor teacher
     String c1, c2, c3, c4, c5, c6, c7, c8, t1, t2, t3, t4, t5, t6, t7, t8;
     c1 = "English III"; t1 = "Ms. Lapan";
     c2 = "Precalculus"; t2 = "Mrs. Gideon";
@@ -11,6 +11,8 @@ public class Schedule {
     c6 = "Latin II"; t6 = "Mrs. Barnett";
     c7 = "AP US History"; t7 = "Ms. Johannessen";
     c8 = "Business Computer Infomation Systems"; t8 = "Mr. James";
+
+    // dit was echt een pokkenwerk
     System.out.println("+------------------------------------------------------------+");
     System.out.println("| 1 |                          " + c1 +" |       " + t1 + " |");
     System.out.println("| 2 |                          " + c2 + " |     " + t2 + " |");

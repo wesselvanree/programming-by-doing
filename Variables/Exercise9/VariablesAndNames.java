@@ -31,5 +31,3 @@ public class VariablesAndNames {
     System.out.println("We need to put about " + average_passengers_per_car + " in each car.");
   }
 }
-
-// dus als een double gelijk wordt gesteld aan een int, wordt de int omgezet in double

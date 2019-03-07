@@ -2,6 +2,7 @@ public class Exercise11
 {
   public static void main(String[] args)
   {
+    // gewoon println
     int roomnr = 113;
     double e = 2.71828;
     String subject = "Computer Science";
