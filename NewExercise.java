@@ -17,7 +17,7 @@ public class NewExercise
     int num = input.nextInt();
 
     // input filename
-    System.out.print("What would you like to name the file? ");
+    System.out.print("What would you like to name the class? ");
     String file = input.next();
 
     // create directory
@@ -40,9 +40,9 @@ public class NewExercise
       String text = "public class " + file + "\n{\n  public static void main(String[] args)\n  {\n    \n  }\n}";
       bw.write(text);
       bw.close();
-      System.out.println("Wrote inside file: true");
+      System.out.println("Typed inside " + file + ".java for you.");
     } catch (IOException ex){
-      System.out.println("couldn't write inside file: " + ex);
+      System.out.println("couldn't write inside "+ file +".java: " + ex);
     }
   }
 }
