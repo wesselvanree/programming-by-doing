@@ -3,11 +3,11 @@
 In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
 <br><br>
 ## XP
-  * Basics & Printing
+  * **Basics & Printing**
     * alles
   * Variables
     * alles
-  * Keyboard Input
+  * **Keyboard Input**
     * alles
   * **Random Numbers (105xp total)**
     * Exercise 41 - 15xp
