@@ -6,7 +6,7 @@ public class ModulusAnimation
     int repeats = 5;
     int steps_per_second = 6;
 
-    // omdat ik modulo 20 gebruik moet het aantal repeats keer 20
+    // omdat ik modulo 13 gebruik moet het aantal repeats keer 13
     for (int i = 0; i < repeats * 13; i++)
     {
       if (i % 13 == 0)
