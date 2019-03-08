@@ -5,7 +5,7 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
 ## XP
   * **Basics & Printing**
     * alles
-  * Variables
+  * **Variables**
     * alles
   * **Keyboard Input**
     * alles
