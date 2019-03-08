@@ -1,4 +1,4 @@
-// worm animatie 2.0
+// worm animatie v2.0
 public class ModulusAnimation
 {
   public static void main(String[] args) throws Exception
@@ -36,7 +36,7 @@ public class ModulusAnimation
       else if (i % 13 == 12)
         System.out.print("                           \r");
 
-      // na zoveel tijd wordt er weer 1 bij i opgeteld en speelt de for loop opnieuw af met i 1 hoger dan hiervoor waardoor dus de volgende if statement uitgevoerd wordt dan de vorige
+      // na zoveel tijd wordt er weer 1 bij i opgeteld en speelt de for loop opnieuw af met i 1 hoger dan hiervoor, waardoor dus de volgende if statement uitgevoerd wordt
       Thread.sleep(1000 / steps_per_second);
     }
 
