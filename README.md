@@ -18,10 +18,22 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
     * Exercise 50 - 45xp
     * Exercise 53 - 40xp
     * Exercise 54 - 55xp
-  * **Do-While Loops**
-    * Exercise 57
-    * Exercise 63
-    * Exercise 63c - bonus 1,2,3,4
+  * **Do-While Loops (245xp total)**
+    * Exercise 57 - 20xp
+    * Exercise 63 - 75xp
+    * Exercise 63c (bonus 1,2,3,4) - 150xp
+  * **For Loops (110xp total)**
+    * Exercise 64 - 10xp
+    * Exercise 65 - 15xp
+    * Exercise 66 - 20xp
+    * Exercise 67 - 25xp
+    * Exercise 71 - 40xp
+  * **Functions (400xp total)**
+    * Exercise 100 - 50xp
+    * Exercise 101 - 60xp
+    * Exercise 105 - 90xp
+    * Exercise 106 - 100xp
+    * Exercise 107 - 100xp
 <br><br>
 ## NewExercise
 Om NewExercise.class uit te voeren gebruik ik `java -cp <pathToClass> NewExercise`. Om het makkelijker te maken heb ik een alias aangemaakt in mijn alias file voor bash.
