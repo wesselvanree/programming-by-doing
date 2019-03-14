@@ -22,6 +22,9 @@ public class TicTacToe
 		column = keyboard.nextInt();
 		board[row][column] = currentPlayer;
 
+		displayBoard2();
+
+		// bij deze opdracht heb ik heel lang vast gezeten doordat ik (!won || !tie) had terwijl ik dacht dat het aan de methods 'checkWin' en 'checkTie' lag...
 		while (!won && !tie) {
 			if (currentPlayer == 'O')
 			{
@@ -32,18 +35,43 @@ public class TicTacToe
 				currentPlayer = 'O';
 			}
 
-			displayBoard2();
+			boolean valid = false;
 			System.out.print(currentPlayer + ", choose your location (row, column): ");
 			row = keyboard.nextInt();
 			column = keyboard.nextInt();
+
+			if (board[row][column] == ' ')
+			{
+				valid = true;
+			}
+
+			while(!valid)
+			{
+				System.out.print(currentPlayer + ", that spot is already taken. Try again: ");
+				row = keyboard.nextInt();
+				column = keyboard.nextInt();
+
+				if (board[row][column] == ' ')
+				{
+					valid = true;
+				}
+			}
 
 			board[row][column] = currentPlayer;
 
 			won = checkWin();
 			tie = checkTie();
+
+			displayBoard2();
 		}
 
-		System.out.println("\nEnd of game");
+		if (tie)
+		{
+			System.out.println("It's a tie!");
+		} else
+		{
+			System.out.println(currentPlayer + ", you won!");
+		}
 
 	}
 
@@ -70,24 +98,35 @@ public class TicTacToe
 
 	public static boolean checkWin()
 	{
-		System.out.println("checking winner...");
-		boolean result = false;
-
-		// horizontal
 		for (int r = 0; r < 3; r++)
 		{
+			// horizontal
 			if (board[r][0] == board[r][1] && board[r][1] == board[r][2] && board[r][0] != ' ')
 			{
-				result = true;
+				return true;
+			}
+
+			// vertical
+			else if (board[0][r] == board[1][r] && board[1][r] == board[2][r] && board[2][r] != ' ')
+			{
+				return true;
 			}
 		}
 
-		return result;
+		// diagonal
+		if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[2][2] != ' ')
+		{
+			return true;
+		} else if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[2][0] != ' ')
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	public static boolean checkTie()
 	{
-		System.out.println("checking tie...");
 		boolean[] b = new boolean[3];
 
 		for (int r = 0; r < 3; r++)
