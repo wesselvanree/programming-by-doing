@@ -89,11 +89,11 @@ public class Hangman
     }
 
     if (won) {
-      System.out.println("You won!");
+      System.out.println("\n\033[32mYou won!\033[0m");
     }
     else
     {
-      System.out.println("You lose.");
+      System.out.println("\n\033[31;1mYou lose.\033[0m");
     }
 
   }
