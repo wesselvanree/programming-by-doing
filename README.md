@@ -41,6 +41,14 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
   * **Arrays (350xp total)**
     * Exercise 152 - 150xp
     * Exercise 153 - 200xp
+  * **Sorting (220xp total)**
+    * Exercise 159 - 100xp
+    * Exercise 160 - 120xp
+  * **Records (460xp total)**
+    * Exercise 167 - 100xp
+    * Exercise 168 - 100xp
+    * Exercise 169 - 120xp
+    * Exercise 170 - 140xp
 <br><br>
 ## NewExercise
 Om NewExercise.class uit te voeren gebruik ik `java -cp <pathToClass> NewExercise`. Om het makkelijker te maken heb ik een alias aangemaakt in mijn alias file voor bash.
