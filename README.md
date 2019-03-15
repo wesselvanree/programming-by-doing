@@ -6,6 +6,7 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
   * **Basics & Printing (alles)**
   * **Variables (alles)**
   * **Keyboard Input (alles)**
+  * **If Statements (alles)**
   * **Random Numbers (105xp total)**
     * Exercise 41 - 15xp
     * Exercise 42 - 10xp
