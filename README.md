@@ -38,6 +38,9 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
     * Exercise 125 - 100xp
   * **File Input and Output (80xp total)**
     * Exercise 137 - 80xp
+  * **Arrays (350xp total)**
+    * Exercise 152 - 150xp
+    * Exercise 153 - 200xp
 <br><br>
 ## NewExercise
 Om NewExercise.class uit te voeren gebruik ik `java -cp <pathToClass> NewExercise`. Om het makkelijker te maken heb ik een alias aangemaakt in mijn alias file voor bash.
