@@ -28,6 +28,7 @@ public class AddressBook
   private static Person[] persons = new Person[personAmount];
   private static Scanner keyboard = new Scanner(System.in);
 
+
   public static void main(String[] args)
   {
     for (int i=0; i<persons.length; i++)
