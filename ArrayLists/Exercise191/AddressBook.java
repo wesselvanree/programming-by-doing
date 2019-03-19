@@ -1,11 +1,7 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Path;
-import java.nio.file.Files;
 
 class Person
 {
@@ -40,15 +36,16 @@ public class AddressBook
 
     while (!quit)
     {
-      System.out.println("\n");
-      System.out.println("1. load from file");
-      System.out.println("2. write to file");
-      System.out.println("3. add to file");
-      System.out.println("4. add entry");
-      System.out.println("5. remove entry");
-      System.out.println("6. edit entry");
-      System.out.println("7. display current entries");
-      System.out.println("8. quit");
+      System.out.println();
+      System.out.println("1. Load from file");
+      System.out.println("2. Save to file");
+      System.out.println("3. Add entry");
+      System.out.println("4. Remove entry");
+      System.out.println("5. Edit entry");
+      System.out.println("6. Sort entries");
+      System.out.println("7. Search specific entries");
+      System.out.println("8. Display all current entries");
+      System.out.println("9. Quit");
       System.out.print("\nWhat would you like to do? ");
       int choice = keyboard.nextInt();
 
@@ -57,16 +54,18 @@ public class AddressBook
       else if (choice == 2)
         writeToDB();
       else if (choice == 3)
-        addToDB();
-      else if (choice == 4)
         addEntry();
-      else if (choice == 5)
+      else if (choice == 4)
         removeEntry();
-      else if (choice == 6)
+      else if (choice == 5)
         editEntry();
+      else if (choice == 6)
+        sortEntries();
       else if (choice == 7)
-        displayCurrent();
+        searchEntry();
       else if (choice == 8)
+        displayAll();
+      else if (choice == 9)
         quit = true;
     }
 
@@ -77,12 +76,22 @@ public class AddressBook
   // vraag van welk bestand de user wil gebruiken
   public static void askDBFile()
   {
-    System.out.print("What file do you want to use? ");
-    dbFile = keyboard.next();
+    boolean valid = false;
+
+    // om te checken of Addressbook.class of Addressbook.java wordt ingevoerd
+    while (!valid)
+    {
+      System.out.print("What file do you want to use? ");
+      dbFile = keyboard.next();
+
+      if (dbFile != "AddressBook.java" && dbFile != "AddressBook.class");
+      {
+        valid = true;
+      }
+    }
   }
 
 
-  // adds entry
   public static void addEntry()
   {
     if (firstNames.size() < personAmount)
@@ -120,7 +129,7 @@ public class AddressBook
   }
 
 
-  // verwijder een entry
+  // verwijdert een entry
   public static void removeEntry()
   {
     System.out.print("Enter the number of the person you want to delete from current entries: ");
@@ -134,7 +143,7 @@ public class AddressBook
   }
 
 
-  // pas personen aan
+  // past personen aan
   public static void editEntry()
   {
     System.out.print("Enter personnumber: ");
@@ -191,27 +200,91 @@ public class AddressBook
   }
 
 
-  // voegt de entries toe aan database
-  public static void addToDB()
+  // sorteer entries op achternaam
+  public static void sortEntries()
   {
-    askDBFile();
-    for (int i=0; i<firstNames.size(); i++)
-    {
-      String a = firstNames.get(i);
-      String b = lastNames.get(i);
-      BigInteger c = phoneNumbers.get(i);
-      String d = emails.get(i);
+    System.out.println("By what would you like to sort? ");
+    System.out.println("1) First name");
+    System.out.println("2) Last name");
+    System.out.println("3) Phone number");
+    System.out.println("4) Emails");
+    System.out.print("> ");
+    int choice = keyboard.nextInt();
 
-      try {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(dbFile, true));
-        String text = a + " " + b + " " + 0 + c + " " + d + "\n";
-        bw.write(text);
-        bw.close();
-      } catch (IOException ex) {
-        System.out.println("couldn't write inside " + dbFile + ": " + ex);
+    while (choice < 1 || choice > 4)
+    {
+      System.out.print("> ");
+      choice = keyboard.nextInt();
+    }
+
+    boolean valid = false;
+    for (int i = 0; i < lastNames.size(); i++)
+    {
+      for (int j = i + 1; j < lastNames.size(); j++)
+      {
+        // compareTo() vergelijkt letters op basis van unicode waarde
+        if (choice == 1)
+          valid = firstNames.get(i).compareTo(firstNames.get(j)) > 0;
+        else if (choice == 2)
+          valid = lastNames.get(i).compareTo(lastNames.get(j)) > 0;
+        else if (choice == 3)
+          valid = phoneNumbers.get(i).compareTo(phoneNumbers.get(j)) > 0;
+        else if (choice == 4)
+          valid = emails.get(i).compareTo(emails.get(j)) > 0;
+
+
+        if (valid)
+        {
+          // wissel lastNames om
+          String temp = lastNames.get(i);
+          lastNames.set(i, lastNames.get(j));
+          lastNames.set(j, temp);
+
+          // wissel first names om
+          temp = firstNames.get(i);
+          firstNames.set(i, firstNames.get(j));
+          firstNames.set(j, temp);
+
+          // wissel phone numbers om
+          BigInteger temp2 = phoneNumbers.get(i);
+          phoneNumbers.set(i, phoneNumbers.get(j));
+          phoneNumbers.set(j, temp2);
+
+          // wissel emails om
+          temp = emails.get(i);
+          emails.set(i, emails.get(j));
+          emails.set(j, temp);
+        }
       }
     }
-    System.out.println("Added entries to " + dbFile);
+
+    // pas persons aan
+    for (int i = 0; i < firstNames.size(); i++) {
+      persons[i].firstName = firstNames.get(i);
+      persons[i].lastName = lastNames.get(i);
+      persons[i].phoneNumber = phoneNumbers.get(i);
+      persons[i].email = emails.get(i);
+    }
+
+    String message;
+    switch (choice) {
+      case 1:
+        message = "first name";
+        break;
+      case 2:
+        message = "last name";
+        break;
+      case 3:
+        message = "phone number";
+        break;
+      case 4:
+        message = "email";
+        break;
+      default:
+        message = "";
+        break;
+    }
+    System.out.println("Sorted entries by " + message);
   }
 
 
@@ -250,6 +323,7 @@ public class AddressBook
   {
     boolean error = false;
     int oldSize = firstNames.size();
+
     askDBFile();
 
     // loopt regel voor regel gegevens langs
@@ -266,6 +340,7 @@ public class AddressBook
 
         input.nextLine();
       }
+      input.close();
     }
     catch (FileNotFoundException ex) {
       System.out.println("\nThat file doesn't exist");
@@ -304,21 +379,73 @@ public class AddressBook
   }
 
 
-  // laat alle persone zien in deze sessie
-  public static void displayCurrent()
+  // laat alle personen zien in deze sessie
+  public static void searchEntry()
   {
+    System.out.println("For what do you want to search?");
+    System.out.println("1) First name");
+    System.out.println("2) Last name");
+    System.out.println("3) Phone number");
+    System.out.println("4) Email");
+    System.out.print("> ");
+    int choice = keyboard.nextInt();
+
+    while (choice < 1 || choice > 4)
+    {
+      System.out.print("> ");
+      choice = keyboard.nextInt();
+    }
+
+    System.out.print("What should it contain? ");
+    String value = keyboard.next();
+
+    ArrayList<Integer> indexes = new ArrayList<Integer>(1);
+    for (int i = 0; i < firstNames.size(); i++)
+    {
+      if (choice == 1 && firstNames.get(i).contains(value))
+        indexes.add(i);
+      else if (choice == 2 && firstNames.get(i).contains(value))
+        indexes.add(i);
+      else if (choice == 3 && phoneNumbers.get(i).toString().contains(value))
+        indexes.add(i);
+      else if (choice == 4 && emails.get(i).contains(value))
+        indexes.add(i);
+    }
+
+
     if (firstNames.size() == 0)
     {
       System.out.println("\nThere are no current entries");
     }
-    for (int i=0; i<firstNames.size(); i++)
+    else
     {
-      int j = i + 1;
-      System.out.println("\nPERSON " + j + ":");
-      System.out.println("  first name: " + persons[i].firstName);
-      System.out.println("  last name: " + persons[i].lastName);
-      System.out.println("  phone number: 0" + persons[i].phoneNumber);
-      System.out.println("  email: " + persons[i].email);
+      for (int i = 0; i < indexes.size(); i++)
+      {
+        int index = indexes.get(i);
+        System.out.println("\nPERSON " + (index + 1) + ":");
+        System.out.println("  first name: " + persons[index].firstName);
+        System.out.println("  last name: " + persons[index].lastName);
+        System.out.println("  phone number: 0" + persons[index].phoneNumber);
+        System.out.println("  email: " + persons[index].email);
+      }
+    }
+  }
+
+
+  public static void displayAll()
+  {
+    if (firstNames.size() == 0)
+      System.out.println("There are no current entries");
+    else
+    {
+      for (int i = 0; i < firstNames.size(); i++) {
+        int j = i + 1;
+        System.out.println("\nPERSON " + j + ":");
+        System.out.println("  first name: " + persons[i].firstName);
+        System.out.println("  last name: " + persons[i].lastName);
+        System.out.println("  phone number: 0" + persons[i].phoneNumber);
+        System.out.println("  email: " + persons[i].email);
+      }
     }
   }
 
