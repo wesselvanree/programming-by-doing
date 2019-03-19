@@ -17,13 +17,22 @@ public class AddressBook
   private static int personAmount = 10;
 
   private static String dbFile;
+
+  // kleurcodes
   private static String ANSI_RED="\u001B[31m";
+  private static String ANSI_YELLOW="\u001B[33m";
+  private static String ANSI_GREEN="\u001B[32m";
   private static String ANSI_RESET="\u001B[0m";
+
+  // ArrayLists
   private static ArrayList<String> firstNames = new ArrayList<String>(1);
   private static ArrayList<String> lastNames = new ArrayList<String>(1);
   private static ArrayList<BigInteger> phoneNumbers = new ArrayList<BigInteger>(1);
   private static ArrayList<String> emails = new ArrayList<String>(1);
+
+  // lijst met Person objects
   private static Person[] persons = new Person[personAmount];
+
   private static Scanner keyboard = new Scanner(System.in);
 
 
@@ -40,7 +49,7 @@ public class AddressBook
     {
 
       if (firstNames.size() == personAmount)
-        System.out.println(ANSI_RED + "\nYou've reached the maximum amount of entries" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "\nYou've reached the maximum amount of entries" + ANSI_RESET);
       else
         System.out.println("\nYou currently have " + firstNames.size() + " entries, the max is " + personAmount);
 
@@ -126,11 +135,11 @@ public class AddressBook
         persons[i].phoneNumber = phoneNumbers.get(i);
         persons[i].email = emails.get(i);
       }
-      System.out.println("Added entry");
+      System.out.println(ANSI_GREEN + "Added entry" + ANSI_RESET);
     }
     else
     {
-      System.out.println(ANSI_RED + "Maximum capacity of entries reached" + ANSI_RESET);
+      System.out.println(ANSI_RED + "You can't add any more persons" + ANSI_RESET);
     }
 
   }
@@ -142,7 +151,7 @@ public class AddressBook
     System.out.print("Enter the number of the person you want to delete from current entries: ");
     int x = keyboard.nextInt();
     int i = x - 1;
-    System.out.println("Removed " + firstNames.get(i) + " " + lastNames.get(i));
+    System.out.println(ANSI_GREEN + "Removed " + firstNames.get(i) + " " + lastNames.get(i) + ANSI_RESET);
     firstNames.remove(i);
     lastNames.remove(i);
     phoneNumbers.remove(i);
@@ -203,7 +212,7 @@ public class AddressBook
       }
     } while (option < 1 || option > 4);
 
-    System.out.println("Edited entry");
+    System.out.println(ANSI_GREEN + "Edited entry" + ANSI_RESET);
   }
 
 
@@ -291,7 +300,7 @@ public class AddressBook
         message = "";
         break;
     }
-    System.out.println("Sorted entries by " + message);
+    System.out.println(ANSI_GREEN + "Sorted entries by " + message + ANSI_RESET);
   }
 
 
@@ -321,7 +330,7 @@ public class AddressBook
       System.out.println(ANSI_RED + "couldn't write inside " + dbFile + ": " + ex + ANSI_RESET);
     }
 
-    System.out.println("Written inside " + dbFile);
+    System.out.println(ANSI_GREEN + "Written inside " + dbFile + ANSI_RESET);
   }
 
 
@@ -331,56 +340,64 @@ public class AddressBook
     boolean error = false;
     int oldSize = firstNames.size();
 
-    askDBFile();
-
-    // loopt regel voor regel gegevens langs
-    try {
-      File in = new File(dbFile);
-      Scanner input = new Scanner(in);
-
-      // blijft doorgaan tot er geen regels meer zijn
-      while (input.hasNext()) {
-        firstNames.add(input.next());
-        lastNames.add(input.next());
-        phoneNumbers.add(input.nextBigInteger());
-        emails.add(input.next());
-
-        input.nextLine();
-      }
-      input.close();
-    }
-    catch (FileNotFoundException ex) {
-      System.out.println(ANSI_RED + "\nThat file doesn't exist" + ANSI_RESET);
-      error = true;
-    }
-
-    // als er in het bestand zoveel personen staan dat het over het maximum amount gaat, worden de laatste verwijderd
-    if (firstNames.size() > personAmount)
+    if (firstNames.size() == personAmount)
+      System.out.println(ANSI_RED + "You can't add any more persons" + ANSI_RESET);
+    else
     {
-      System.out.println(ANSI_RED + "Reached maximum capacity of entries. Couldn't add all persons" + ANSI_RESET);
-      for (int i = firstNames.size() - 1; i >= personAmount; i--)
+      askDBFile();
+
+      // loopt regel voor regel gegevens langs
+      try
       {
-        firstNames.remove(i);
-        lastNames.remove(i);
-        phoneNumbers.remove(i);
-        emails.remove(i);
-      }
-    }
+        File in = new File(dbFile);
+        Scanner input = new Scanner(in);
 
-    for (int i=0; i<firstNames.size(); i++)
-    {
-      persons[i].firstName = firstNames.get(i);
-      persons[i].lastName = lastNames.get(i);
-      persons[i].phoneNumber = phoneNumbers.get(i);
-      persons[i].email = emails.get(i);
-    }
+        // blijft doorgaan tot er geen regels meer zijn
+        while (input.hasNext())
+        {
+          firstNames.add(input.next());
+          lastNames.add(input.next());
+          phoneNumbers.add(input.nextBigInteger());
+          emails.add(input.next());
 
-    if (!error)
-    {
-      System.out.println("\nExtracted persons from " + dbFile + ": ");
-      for (int i = oldSize; i < firstNames.size(); i++)
+          input.nextLine();
+        }
+        input.close();
+      } catch (FileNotFoundException ex)
       {
-        System.out.println("  " + (i + 1) + ") " +firstNames.get(i));
+        System.out.println(ANSI_RED + "\nThat file doesn't exist" + ANSI_RESET);
+        error = true;
+      }
+
+      // als er in het bestand zoveel personen staan dat het over het maximum amount
+      // gaat, worden de laatste verwijderd
+      if (firstNames.size() > personAmount)
+      {
+        System.out.println(ANSI_RED + "Reached maximum capacity of entries. Couldn't add all persons" + ANSI_RESET);
+        for (int i = firstNames.size() - 1; i >= personAmount; i--)
+        {
+          firstNames.remove(i);
+          lastNames.remove(i);
+          phoneNumbers.remove(i);
+          emails.remove(i);
+        }
+      }
+
+      for (int i = 0; i < firstNames.size(); i++)
+      {
+        persons[i].firstName = firstNames.get(i);
+        persons[i].lastName = lastNames.get(i);
+        persons[i].phoneNumber = phoneNumbers.get(i);
+        persons[i].email = emails.get(i);
+      }
+
+      if (!error) {
+        System.out.println(ANSI_GREEN + "\nExtracted persons from " + dbFile + ": ");
+        for (int i = oldSize; i < firstNames.size(); i++)
+        {
+          System.out.println("  " + (i + 1) + ") " + firstNames.get(i));
+        }
+        System.out.print(ANSI_RESET);
       }
     }
   }
@@ -421,9 +438,9 @@ public class AddressBook
 
 
     if (firstNames.size() == 0)
-    {
-      System.out.println("\nThere are no current entries");
-    }
+      System.out.println(ANSI_RED + "\nThere are no current entries" + ANSI_RESET);
+    else if (indexes.size() == 0)
+      System.out.println(ANSI_RED + "\nCouldn't find anybody with that criteria" + ANSI_RESET);
     else
     {
       for (int i = 0; i < indexes.size(); i++)
@@ -439,10 +456,11 @@ public class AddressBook
   }
 
 
+  // laat alle entries zien
   public static void displayAll()
   {
     if (firstNames.size() == 0)
-      System.out.println("There are no current entries");
+      System.out.println(ANSI_GREEN + "There are no current entries" + ANSI_RESET);
     else
     {
       for (int i = 0; i < firstNames.size(); i++) {
