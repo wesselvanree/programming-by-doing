@@ -17,6 +17,8 @@ public class AddressBook
   private static int personAmount = 10;
 
   private static String dbFile;
+  private static String ANSI_RED="\u001B[31m";
+  private static String ANSI_RESET="\u001B[0m";
   private static ArrayList<String> firstNames = new ArrayList<String>(1);
   private static ArrayList<String> lastNames = new ArrayList<String>(1);
   private static ArrayList<BigInteger> phoneNumbers = new ArrayList<BigInteger>(1);
@@ -36,7 +38,12 @@ public class AddressBook
 
     while (!quit)
     {
-      System.out.println();
+
+      if (firstNames.size() == personAmount)
+        System.out.println(ANSI_RED + "\nYou've reached the maximum amount of entries" + ANSI_RESET);
+      else
+        System.out.println("\nYou currently have " + firstNames.size() + " entries, the max is " + personAmount);
+
       System.out.println("1. Load from file");
       System.out.println("2. Save to file");
       System.out.println("3. Add entry");
@@ -123,7 +130,7 @@ public class AddressBook
     }
     else
     {
-      System.out.println("Maximum capacity of entries reached");
+      System.out.println(ANSI_RED + "Maximum capacity of entries reached" + ANSI_RESET);
     }
 
   }
@@ -311,7 +318,7 @@ public class AddressBook
       bw.write(text);
       bw.close();
     } catch (IOException ex) {
-      System.out.println("couldn't write inside " + dbFile + ": " + ex);
+      System.out.println(ANSI_RED + "couldn't write inside " + dbFile + ": " + ex + ANSI_RESET);
     }
 
     System.out.println("Written inside " + dbFile);
@@ -343,14 +350,14 @@ public class AddressBook
       input.close();
     }
     catch (FileNotFoundException ex) {
-      System.out.println("\nThat file doesn't exist");
+      System.out.println(ANSI_RED + "\nThat file doesn't exist" + ANSI_RESET);
       error = true;
     }
 
     // als er in het bestand zoveel personen staan dat het over het maximum amount gaat, worden de laatste verwijderd
     if (firstNames.size() > personAmount)
     {
-      System.out.println("Reached maximum capacity of entries. Couldn't add all persons");
+      System.out.println(ANSI_RED + "Reached maximum capacity of entries. Couldn't add all persons" + ANSI_RESET);
       for (int i = firstNames.size() - 1; i >= personAmount; i--)
       {
         firstNames.remove(i);
