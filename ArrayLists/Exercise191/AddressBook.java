@@ -1,6 +1,7 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.io.*;
 
 class Person
@@ -63,7 +64,23 @@ public class AddressBook
       System.out.println("8. Display all current entries");
       System.out.println("9. Quit");
       System.out.print("\nWhat would you like to do? ");
-      int choice = keyboard.nextInt();
+
+      int choice = 0;
+      boolean valid = false;
+      while (!valid)
+      {
+        try {
+          choice = keyboard.nextInt();
+        } catch (InputMismatchException ex) {
+          System.out.print(ANSI_RED + "Please enter a number: " + ANSI_RESET);
+          keyboard.next(); // zodat de string die bij de input stond wordt opgevangen
+        }
+
+        if (choice > 0 && choice < 10)
+        {
+          valid = true;
+        }
+      }
 
       if (choice == 1)
         getFromDB();
