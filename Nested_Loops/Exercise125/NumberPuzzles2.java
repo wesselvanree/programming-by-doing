@@ -20,11 +20,11 @@ public class NumberPuzzles2
         option1();
       else if (choice == 2)
         option2();
+      // als quit true is stopt de loop
       else if (choice == 3)
-        // als quit true is stopt de loop
         quit = true;
+      // laat rode ERROR zien
       else
-        // laat rode ERROR zien
         System.out.println("\n\u001b[31mERROR\u001b[0m\n");
 
     } while (quit != true);

@@ -30,7 +30,7 @@ public class VowelCapitalization
           // slaat de letter van dit moment op in c
           char c = line.charAt(i);
 
-          // checkt of c een vowel is
+          // check of c een vowel is
           if ( c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' )
           {
             System.out.print( Character.toUpperCase(c) );

@@ -16,6 +16,7 @@ public class CountingFor
         // 3.
         for ( int n = 1 ; n <= 10 ; n = n+1 )
         {
+            // voor opdacht 4, anders deze if statement weghalen
             if (n % 2 == 0)
               System.out.println(n + ". " + message);
         }

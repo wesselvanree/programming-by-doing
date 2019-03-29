@@ -24,7 +24,6 @@ public class AgeIn5
     // output leeftijden
     System.out.println("\nDid you know that in five years you will be " + AddedAge + " years old?");
     System.out.println("And five years ago you were " + SubstractedAge + "! Imagine that!");
-
   }
 
   // gebruikt een parameter en haalt er 5 vanaf, deze moet een integer zijn

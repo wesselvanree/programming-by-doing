@@ -34,7 +34,7 @@ public class Nim
     do
     {
       // System.out.println("\nA: " + A + "\tB: " + B + "\tC: " + C + "\n"); // default
-      printScore2(A,B,C);
+      printScore1(A,B,C);
       // check of het getal even is of niet en selecteert wie er aan de beurt is
       if (player.equals(player1))
         player = player2;

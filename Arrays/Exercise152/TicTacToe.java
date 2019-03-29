@@ -24,7 +24,7 @@ public class TicTacToe
 
 		displayBoard2();
 
-		// bij deze opdracht heb ik heel lang vast gezeten doordat ik (!won || !tie) had terwijl ik dacht dat het aan de methods 'checkWin' en 'checkTie' lag...
+		// blijft lopen tot er iemand gewonnen heeft of het gelijkspel is
 		while (!won && !tie) {
 			if (currentPlayer == 'O')
 			{
@@ -75,15 +75,16 @@ public class TicTacToe
 
 	}
 
+	// maakt nieuw bord aan
 	public static void initBoard()
 	{
-		// fills up the board with blanks
 		for ( int r=0; r<3; r++ )
 			for ( int c=0; c<3; c++ )
 				board[r][c] = ' ';
 	}
 
 
+	// displayboard v1
 	public static void displayBoard()
 	{
     System.out.println();
@@ -96,24 +97,26 @@ public class TicTacToe
   	System.out.println();
 	}
 
+
+	// check of er iemand gewonnen heeft
 	public static boolean checkWin()
 	{
 		for (int r = 0; r < 3; r++)
 		{
-			// horizontal
+			// horizontaal
 			if (board[r][0] == board[r][1] && board[r][1] == board[r][2] && board[r][0] != ' ')
 			{
 				return true;
 			}
 
-			// vertical
+			// verticaal
 			else if (board[0][r] == board[1][r] && board[1][r] == board[2][r] && board[2][r] != ' ')
 			{
 				return true;
 			}
 		}
 
-		// diagonal
+		// diagonaal
 		if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[2][2] != ' ')
 		{
 			return true;
@@ -125,6 +128,8 @@ public class TicTacToe
 		return false;
 	}
 
+
+	// check voor gelijkspel
 	public static boolean checkTie()
 	{
 		boolean[] b = new boolean[3];
@@ -149,6 +154,7 @@ public class TicTacToe
 	}
 
 
+	// displayboard v2
 	public static void displayBoard2()
 	{
 		System.out.println();

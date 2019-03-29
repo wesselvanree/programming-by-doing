@@ -195,6 +195,8 @@ public class AddressBook
     System.out.println("  2. Last name");
     System.out.println("  3. Phone number");
     System.out.println("  4. Email");
+
+    // blijft opnieuw vragen tot de goeie option gekozen is
     int option = 0;
     do
     {
@@ -244,6 +246,7 @@ public class AddressBook
     System.out.print("> ");
     int choice = keyboard.nextInt();
 
+    // blijft opnieuw vragen als er een keuze wordt gemaakt die niet valid is
     while (choice < 1 || choice > 4)
     {
       System.out.print("> ");
@@ -265,7 +268,7 @@ public class AddressBook
         else if (choice == 4)
           valid = emails.get(i).compareTo(emails.get(j)) > 0;
 
-
+        // als de waarde gebaseerd op de vorige statements waar is, is valid true
         if (valid)
         {
           // wissel lastNames om
@@ -299,6 +302,7 @@ public class AddressBook
       persons[i].email = emails.get(i);
     }
 
+    // kies wat er in bericht moet komen op basis van de gemaakte keuze
     String message;
     switch (choice) {
       case 1:
@@ -355,6 +359,7 @@ public class AddressBook
   public static void getFromDB()
   {
     boolean error = false;
+    // oude aantal van entries opslaan voor later
     int oldSize = firstNames.size();
 
     if (firstNames.size() == personAmount)
@@ -408,6 +413,7 @@ public class AddressBook
         persons[i].email = emails.get(i);
       }
 
+      // eerder opgeslagen entries worden hier gebruikt om de nieuwe te laten zien
       if (!error) {
         System.out.println(ANSI_GREEN + "\nExtracted persons from " + dbFile + ": ");
         for (int i = oldSize; i < firstNames.size(); i++)
@@ -437,6 +443,7 @@ public class AddressBook
       choice = keyboard.nextInt();
     }
 
+    // vragen waarnaar er gezocht moet worden
     System.out.print("What should it contain? ");
     String value = keyboard.next();
 
@@ -454,6 +461,7 @@ public class AddressBook
     }
 
 
+    // laat resultaat zien
     if (firstNames.size() == 0)
       System.out.println(ANSI_RED + "\nThere are no current entries" + ANSI_RESET);
     else if (indexes.size() == 0)
