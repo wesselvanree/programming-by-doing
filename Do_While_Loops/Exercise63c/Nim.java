@@ -9,7 +9,6 @@ public class Nim
     int rm;
     boolean hasWinner = false;
 
-    // ik bedacht me hier dat ik dezelfde ANSI escape codes kon gebruiken voor gekleurde output zoals ik in mijn PS1 gedaan heb in mijn .bashrc file
     String ANSI_RESET = "\u001B[0m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_CYAN = "\u001B[36m";
