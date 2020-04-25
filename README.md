@@ -52,6 +52,3 @@ In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
     * Exercise 170 - 140xp
   * **ArrayLists**
     * Exercise 191
-<br><br>
-## NewExercise
-Om NewExercise.class uit te voeren gebruik ik `java -cp <pathToClass> NewExercise`. Om het makkelijker te maken heb ik een alias aangemaakt in mijn alias file voor bash.
