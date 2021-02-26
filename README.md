@@ -1,4 +1,4 @@
-# programming_by_doing
+# Programming by Doing
 
 In elke map zijn de opdrachten te vinden die bij dat onderdeel horen.
 <br><br>
